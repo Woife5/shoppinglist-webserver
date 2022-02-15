@@ -11,7 +11,11 @@ const locations = fs
     .filter(file => file.endsWith('.json'))
     .map(file => file.replace('.json', ''));
 
-router.get('/:location', async (req, res) => {
+router.get('/locations', async (req, res) => {
+    res.json(locations);
+});
+
+router.get('/sorted/:location', async (req, res) => {
     const { location } = req.params;
 
     // Check if sorting rules are preset for the requested location
