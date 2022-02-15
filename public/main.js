@@ -7,6 +7,9 @@ function handleForm(event) {
         quantity: data.get('quantity'),
     };
 
+    const inputFields = document.querySelectorAll('input');
+    inputFields.forEach(input => (input.type === 'text' ? (input.value = '') : null));
+
     fetch('api/save', {
         method: 'POST',
         body: JSON.stringify(body),
