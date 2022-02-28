@@ -11,13 +11,9 @@
         "tymian",
         "suppengewürz",
         "rosmarin",
-        "reis",
-        "basmatireis",
-        "langkornreis",
         "couscous",
         "paprikapulver",
         "chillifix",
-        "milchreis",
         "knoblauchpulver",
         "pfeffermühle",
         "mayonnaise",
@@ -30,6 +26,7 @@
         "ahornsirup",
         "muskatnuss",
         "rindersuppe",
+        "sourcream",
         "senf"
     ],
     "Regal ganz hinten": [
@@ -44,13 +41,16 @@
         "kichererbsen",
         "bambussprossen",
         "sojasauce",
+        "reis",
         "sushireis",
+        "basmatireis",
+        "langkornreis",
+        "milchreis",
         "olivenöl",
+        "sonnenblumenöl",
         "balsamico",
-        "sourcream",
         "tabasco",
         "linsen",
-        "sonnenblumenöl",
         "curry-mangosauce",
         "tomaten(getrocknet)",
         "currymango-sauce",
@@ -217,7 +217,9 @@
         "waschmaschinentabs",
         "spülmittel",
         "taschentücher",
-        "backpapier"
+        "backpapier",
+        "zahnpasta",
+        "zahnbürste"
     ],
     "Getränkeregal": ["tonic", "bier", "energydrink", "tonicwater", "apfelmus"]
 }
