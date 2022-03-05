@@ -11,6 +11,18 @@ router.get('/locations', async (req, res) => {
     res.json(locations.map(location => location.name));
 });
 
+router.get('/aisles/:location', async (req, res) => {
+    const location = req.params.location;
+
+    const loc = await Location.findOne({ name: location }).exec();
+    if (!loc) {
+        return res.status(400).json({ message: 'Location not found!' });
+    }
+
+    const aisles = loc.aisles.map(a => a.name);
+    res.json(aisles);
+});
+
 router.get('/sorted/:location', async (req, res) => {
     const { location } = req.params;
 
