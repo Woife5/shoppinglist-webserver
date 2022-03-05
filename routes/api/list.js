@@ -1,38 +1,33 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
 
 const Item = require('../../models/Item');
+const Location = require('../../models/Location');
 
 // LOCATION: /api/list
 
-const locations = fs
-    .readdirSync('config')
-    .filter(file => file.endsWith('.json'))
-    .map(file => file.replace('.json', ''));
-
 router.get('/locations', async (req, res) => {
-    res.json(locations);
+    const locations = await Location.find({});
+    res.json(locations.map(location => location.name));
 });
 
 router.get('/sorted/:location', async (req, res) => {
     const { location } = req.params;
 
     // Check if sorting rules are preset for the requested location
-    if (!locations.includes(location)) {
-        return res.status(404).json({ message: 'Not Found' });
+    const locationRules = await Location.findOne({ name: location }).exec();
+    if (!locationRules) {
+        return res.status(404).json({ message: 'Location not found!' });
     }
+    const sortingRules = locationRules.aisles;
 
-    const sortingRules = require(`../../config/${location}.json`);
-
-    const items = await Item.find({});
-    const categories = Object.keys(sortingRules);
-
+    const items = await Item.find({}).exec();
     const sortedItems = {};
 
     items.forEach(item => {
         const { name, quantity } = item;
-        const category = categories.find(category => sortingRules[category].includes(name));
+        let category = sortingRules.find(aisle => aisle.items.includes(name));
+        category = category?.name ? category.name : 'other';
 
         const itemString = `${quantity ? quantity + ' ' : ''}${capitalizeEveryWord(name)}`;
 

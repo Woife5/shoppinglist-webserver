@@ -21,6 +21,10 @@ app.use('/api/save', saveApi);
 const listApi = require('./routes/api/list');
 app.use('/api/list', listApi);
 
+// update rules API router
+const rulesApi = require('./routes/api/rules');
+app.use('/api/rules', rulesApi);
+
 /** -------------------- Handle all other requests with 404, not found -------------------- */
 app.use('*', (req, res) => {
     res.status(404).json({ message: 'Not Found' });
